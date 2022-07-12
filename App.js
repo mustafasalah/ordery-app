@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { I18nManager, StyleSheet, View } from "react-native";
 import "intl-pluralrules";
 import colors from "./app/configs/colors";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -45,7 +45,6 @@ export default function App() {
 const styles = StyleSheet.create({
     screenContainer: {
         backgroundColor: colors.gray,
-        direction: "rtl",
         flex: 1,
     },
 });

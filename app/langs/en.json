@@ -1,5 +1,10 @@
 {
     "translation": {
-        "order_your_food_online_without_any_effort": "Order your food online without any effort!"
+        "login": "Login",
+        "signup": "Signup",
+        "skip": "skip",
+        "next": "next",
+        "welcome_head_1": "Order your food online without any effort!",
+        "welcome_description_1": "All you have to do is order the most delicious meals from the most famous restaurants in your area"
     }
 }

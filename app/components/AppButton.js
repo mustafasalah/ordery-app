@@ -1,0 +1,23 @@
+import { TouchableWithoutFeedback } from "react-native";
+import React from "react";
+import defaultStyle from "../configs/defaultStyle";
+import AppText from "./AppText";
+
+const AppButton = ({ children, style, noShadow = false, ...props }) => {
+    return (
+        <TouchableWithoutFeedback {...props}>
+            <AppText
+                style={[
+                    defaultStyle.primaryBtn,
+                    noShadow ? null : defaultStyle.shadow,
+                    noShadow ? null : defaultStyle.textShadow,
+                    style,
+                ]}
+            >
+                {children}
+            </AppText>
+        </TouchableWithoutFeedback>
+    );
+};
+
+export default AppButton;
