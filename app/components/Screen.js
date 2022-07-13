@@ -1,6 +1,7 @@
 import { StyleSheet, SafeAreaView, View, Platform } from "react-native";
 import React from "react";
 import defaultStyle from "../configs/defaultStyle";
+import colors from "../configs/colors";
 
 const Screen = ({ notSafe = false, children }) => {
     if (notSafe) return <View style={styles.container}>{children}</View>;
@@ -18,5 +19,6 @@ const styles = StyleSheet.create({
     safeContainer: defaultStyle.safeContainer,
     container: {
         flex: 1,
+        backgroundColor: colors.gray,
     },
 });

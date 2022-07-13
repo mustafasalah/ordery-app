@@ -9,7 +9,7 @@ const AppButton = ({ children, style, noShadow = false, ...props }) => {
             <AppText
                 style={[
                     defaultStyle.primaryBtn,
-                    noShadow ? null : defaultStyle.shadow,
+                    noShadow ? null : defaultStyle.lightShadow,
                     noShadow ? null : defaultStyle.textShadow,
                     style,
                 ]}

@@ -3,18 +3,17 @@ import {
     View,
     Image,
     ImageBackground,
-    I18nManager,
     useWindowDimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import Screen from "../components/Screen";
 import colors from "../configs/colors";
 import { useTranslation } from "react-i18next";
-import AppText from "../components/AppText";
 import layout from "../configs/layout";
 import AppButton from "../components/AppButton";
 import { FontAwesome } from "@expo/vector-icons";
 import defaultStyle from "../configs/defaultStyle";
+import OnBoard from "../components/OnBoard";
 
 const WelcomeScreen = () => {
     const { t } = useTranslation();
@@ -30,49 +29,9 @@ const WelcomeScreen = () => {
                 <View style={styles.logoContainer}>
                     <Image source={require("../assets/logo.png")} />
                 </View>
-                <View>
-                    <View>
-                        <View style={styles.illustrationContainer}>
-                            <Image
-                                style={styles.illustration}
-                                source={require("../assets/illustration-1.png")}
-                            />
-                            <AppText style={styles.headText} numberOfLines={2}>
-                                {t("welcome_head_1")}
-                            </AppText>
-                            <AppText
-                                style={styles.descriptionText}
-                                numberOfLines={3}
-                            >
-                                {t("welcome_description_1")}
-                            </AppText>
-                        </View>
-                    </View>
-                    <View style={styles.btnsContainer}>
-                        <AppButton
-                            style={[styles.navigationBtns, styles.skipBtn]}
-                            noShadow
-                        >
-                            {t("skip")}
-                        </AppButton>
-                        <AppButton
-                            style={[styles.navigationBtns, styles.nextBtn]}
-                            noShadow
-                        >
-                            {t("next")}
-                            {"  "}
-                            <FontAwesome
-                                name={
-                                    I18nManager.isRTL
-                                        ? "angle-left"
-                                        : "angle-right"
-                                }
-                                size={24}
-                                color={colors.primary}
-                            />
-                        </AppButton>
-                    </View>
-                </View>
+
+                <OnBoard />
+
                 <View
                     style={[
                         styles.authContainer,
@@ -132,15 +91,16 @@ const styles = StyleSheet.create({
     },
     nextBtn: {
         color: colors.primary,
+        paddingEnd: 20,
     },
     skipBtn: {
         color: colors.secondary75,
         fontFamily: "Almarai_700Bold",
+        paddingStart: 20,
     },
     btnsContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginTop: 20,
     },
     descriptionText: {
         textAlign: "center",
@@ -156,7 +116,7 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontSize: 20,
         fontFamily: "Almarai_800ExtraBold",
-        marginTop: 10,
+        marginTop: 15,
         paddingHorizontal: 10,
     },
     background: {
@@ -176,7 +136,8 @@ const styles = StyleSheet.create({
         borderRadius: 400,
         alignItems: "center",
         paddingBottom: 50,
-        marginTop: 20,
+        marginTop: 50,
+        marginBottom: 20,
         ...defaultStyle.shadow,
     },
     illustration: {

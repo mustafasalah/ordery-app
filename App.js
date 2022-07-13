@@ -1,5 +1,6 @@
+import { useCallback, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { I18nManager, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import "intl-pluralrules";
 import colors from "./app/configs/colors";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -11,8 +12,10 @@ import {
     Almarai_700Bold,
     Almarai_800ExtraBold,
 } from "@expo-google-fonts/almarai";
+import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import HomeScreen from "./app/screens/HomeScreen";
+import AppNavigator from "./app/navigators/AppNavigator";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -22,9 +25,9 @@ export default function App() {
         Almarai_800ExtraBold,
     });
 
-    const onLayoutRootView = async () => {
+    const onLayoutRootView = useCallback(async () => {
         await SplashScreen.hideAsync();
-    };
+    }, []);
 
     useEffect(() => {
         (async () => {
@@ -35,10 +38,12 @@ export default function App() {
     if (!fontsLoaded) return null;
 
     return (
-        <View style={styles.screenContainer} onLayout={onLayoutRootView}>
-            <WelcomeScreen />
-            <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <View style={styles.screenContainer} onLayout={onLayoutRootView}>
+                <AppNavigator />
+                <StatusBar style="auto" />
+            </View>
+        </NavigationContainer>
     );
 }
 

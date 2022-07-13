@@ -34,9 +34,19 @@ const defaultStyle = {
             width: 0,
             height: 4,
         },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.19,
         shadowRadius: 5.62,
         elevation: 6,
+    },
+    lightShadow: {
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        elevation: 3,
     },
 };
 
