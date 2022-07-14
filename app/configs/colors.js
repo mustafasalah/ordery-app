@@ -1,7 +1,7 @@
 const colors = {
     primary: "rgb(252, 163, 17)",
-    primary75: "rgb(252, 163, 17, 0.75)",
-    primary50: "rgb(252, 163, 17, 0.5)",
+    primary75: "rgba(252, 163, 17, 0.75)",
+    primary50: "rgba(252, 163, 17, 0.5)",
     secondary: "rgb(20, 33, 61)",
     secondary75: "rgba(20, 33, 61, 0.75)",
     secondary50: "rgba(20, 33, 61, 0.5)",

@@ -1,5 +1,10 @@
 {
     "translation": {
+        "favourites": "المفضلات",
+        "orders": "الطلبات",
+        "discover": "إستكشف",
+        "basket": "السلة",
+        "home": "الرئيسية",
         "login": "تسجيل الدخول",
         "signup": "تسجيل جديد",
         "skip": "تخطي",
