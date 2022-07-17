@@ -1,25 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import React from "react";
 import Screen from "../components/Screen";
-import colors from "../configs/colors";
-import defaultStyle from "../configs/defaultStyle";
+import OffersSlider from "../components/OffersSlider";
 
 const HomeScreen = () => {
     return (
         <Screen>
-            <View style={styles.header}></View>
+            <OffersSlider />
         </Screen>
     );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-    header: {
-        backgroundColor: colors.secondary,
-        paddingHorizontal: 20,
-        paddingVertical: 12,
-        borderRadius: 15,
-        ...defaultStyle.shadow,
-    },
-});
+const styles = StyleSheet.create({});
