@@ -15,7 +15,7 @@ const OnBoard = () => {
     const { t } = useTranslation();
     const carousel = useRef();
     const [activeIllustration, setActiveIllustration] = useState(0);
-    const [illustrations, setIllustrations] = useState([
+    const illustrations = useRef([
         {
             illustration: (
                 <Illustration1 style={styles.illustration} height={220} />
@@ -49,8 +49,8 @@ const OnBoard = () => {
                     onSnapToItem={(index) => setActiveIllustration(index)}
                     data={
                         I18nManager.isRTL
-                            ? illustrations.reverse()
-                            : illustrations
+                            ? illustrations.current.reverse()
+                            : illustrations.current
                     }
                     renderItem={({ item, index }) => {
                         return (
@@ -69,7 +69,7 @@ const OnBoard = () => {
                                     {item.description}
                                 </AppText>
                                 <Pagination
-                                    dotsLength={illustrations.length}
+                                    dotsLength={illustrations.current.length}
                                     activeDotIndex={activeIllustration}
                                     containerStyle={{
                                         position: "absolute",
@@ -103,7 +103,10 @@ const OnBoard = () => {
                 <AppButton
                     style={[styles.navigationBtns, styles.nextBtn]}
                     onPress={() => {
-                        if (activeIllustration < illustrations.length - 1) {
+                        if (
+                            activeIllustration <
+                            illustrations.current.length - 1
+                        ) {
                             carousel.current.snapToNext();
                         } else {
                             // Go to Home Screen
@@ -111,7 +114,7 @@ const OnBoard = () => {
                     }}
                     noShadow
                 >
-                    {activeIllustration >= illustrations.length - 1
+                    {activeIllustration >= illustrations.current.length - 1
                         ? t("start")
                         : t("next")}
                     {"  "}

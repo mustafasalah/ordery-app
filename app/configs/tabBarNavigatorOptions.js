@@ -1,11 +1,19 @@
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { StyleSheet, Text } from "react-native";
 import colors from "./colors";
 import defaultStyle from "./defaultStyle";
 import i18next from "i18next";
+import {
+    faBasketShopping,
+    faHeart,
+    faBoxOpen,
+    faHouseChimney,
+    faUtensils,
+} from "@fortawesome/free-solid-svg-icons";
+import ScreenHeader from "../components/ScreenHeader";
 
 const tabBarNavigationOptions = ({ navigation, route }) => ({
-    headerStyle: styles.header,
+    header: (props) => <ScreenHeader {...props} />,
     tabBarStyle: styles.tabBar,
     tabBarActiveTintColor: colors.primary75,
     tabBarInactiveTintColor: colors.secondary50,
@@ -16,13 +24,19 @@ const tabBarNavigationOptions = ({ navigation, route }) => ({
         let icon;
         switch (route.name) {
             case "home":
-                icon = <FontAwesome5 name="home" size={20} color={color} />;
+                icon = (
+                    <FontAwesomeIcon
+                        icon={faHouseChimney}
+                        size={20}
+                        color={color}
+                    />
+                );
                 break;
 
             case "basket":
                 icon = (
-                    <FontAwesome
-                        name="shopping-basket"
+                    <FontAwesomeIcon
+                        icon={faBasketShopping}
                         size={20}
                         color={color}
                     />
@@ -30,15 +44,25 @@ const tabBarNavigationOptions = ({ navigation, route }) => ({
                 break;
 
             case "discover":
-                icon = <FontAwesome5 name="utensils" size={20} color={color} />;
+                icon = (
+                    <FontAwesomeIcon
+                        icon={faUtensils}
+                        size={20}
+                        color={color}
+                    />
+                );
                 break;
 
             case "orders":
-                icon = <FontAwesome5 name="box-open" size={20} color={color} />;
+                icon = (
+                    <FontAwesomeIcon icon={faBoxOpen} size={20} color={color} />
+                );
                 break;
 
             case "favourites":
-                icon = <FontAwesome name="heart" size={20} color={color} />;
+                icon = (
+                    <FontAwesomeIcon icon={faHeart} size={20} color={color} />
+                );
                 break;
         }
 
@@ -49,16 +73,13 @@ const tabBarNavigationOptions = ({ navigation, route }) => ({
 export default tabBarNavigationOptions;
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: colors.secondary,
-        ...defaultStyle.shadow,
-    },
     tabBar: {
         backgroundColor: colors.white,
         borderTopRightRadius: 25,
         borderTopLeftRadius: 25,
         height: 65,
         paddingHorizontal: 10,
+        position: "absolute",
         ...defaultStyle.shadow,
     },
     tabBarIcon: {

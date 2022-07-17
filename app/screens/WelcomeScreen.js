@@ -20,7 +20,7 @@ const WelcomeScreen = () => {
     const { width: windowWidth } = useWindowDimensions();
 
     return (
-        <Screen notSafe>
+        <Screen>
             <ImageBackground
                 imageStyle="cover"
                 source={require("../assets/bg.png")}

@@ -1,11 +1,11 @@
-import { TouchableWithoutFeedback } from "react-native";
+import { Pressable } from "react-native";
 import React from "react";
 import defaultStyle from "../configs/defaultStyle";
 import AppText from "./AppText";
 
 const AppButton = ({ children, style, noShadow = false, ...props }) => {
     return (
-        <TouchableWithoutFeedback {...props}>
+        <Pressable {...props}>
             <AppText
                 style={[
                     defaultStyle.primaryBtn,
@@ -16,7 +16,7 @@ const AppButton = ({ children, style, noShadow = false, ...props }) => {
             >
                 {children}
             </AppText>
-        </TouchableWithoutFeedback>
+        </Pressable>
     );
 };
 

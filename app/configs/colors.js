@@ -6,6 +6,7 @@ const colors = {
     secondary75: "rgba(20, 33, 61, 0.75)",
     secondary50: "rgba(20, 33, 61, 0.5)",
     gray: "#F6F6F6",
+    border: "#E5E5E5",
     white: "#FFFFFF",
     black: "#010D25",
     green: "#17C545",

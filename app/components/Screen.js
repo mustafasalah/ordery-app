@@ -3,20 +3,30 @@ import React from "react";
 import defaultStyle from "../configs/defaultStyle";
 import colors from "../configs/colors";
 
-const Screen = ({ notSafe = false, children }) => {
-    if (notSafe) return <View style={styles.container}>{children}</View>;
+const Screen = ({ safe = false, children }) => {
+    if (safe)
+        return (
+            <SafeAreaView
+                style={[
+                    styles.container,
+                    defaultStyle.containerPadding,
+                    defaultStyle.safeContainer,
+                ]}
+            >
+                {children}
+            </SafeAreaView>
+        );
 
     return (
-        <SafeAreaView style={[styles.container, styles.safeContainer]}>
+        <View style={[styles.container, defaultStyle.containerPadding]}>
             {children}
-        </SafeAreaView>
+        </View>
     );
 };
 
 export default Screen;
 
 const styles = StyleSheet.create({
-    safeContainer: defaultStyle.safeContainer,
     container: {
         flex: 1,
         backgroundColor: colors.gray,

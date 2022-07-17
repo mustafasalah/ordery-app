@@ -6,7 +6,9 @@ import layout from "./layout";
 const defaultStyle = {
     safeContainer: {
         marginTop: Constants.statusBarHeight,
-        paddingTop: 10,
+    },
+    containerPadding: {
+        paddingTop: 25,
         paddingHorizontal: layout.screenHorizontalPadding,
     },
     appTextStyle: {
