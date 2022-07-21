@@ -9,6 +9,8 @@ import React, { useRef, useState } from "react";
 import colors from "../configs/colors";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import layout from "../configs/layout";
+import { Shadow } from "react-native-shadow-2";
+import defaultStyle from "../configs/defaultStyle";
 
 const OffersSlider = () => {
     const sliders = useRef([
@@ -34,11 +36,17 @@ const OffersSlider = () => {
                 onSnapToItem={(index) => setActiveSlide(index)}
                 renderItem={({ item, index }) => {
                     return (
-                        <Image
-                            style={styles.sliderImage}
-                            source={item}
-                            resizeMode="contain"
-                        />
+                        <View
+                            style={{
+                                ...defaultStyle.shadow,
+                            }}
+                        >
+                            <Image
+                                style={styles.sliderImage}
+                                source={item}
+                                resizeMode="contain"
+                            />
+                        </View>
                     );
                 }}
                 loop

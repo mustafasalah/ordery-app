@@ -44,10 +44,10 @@ const defaultStyle = {
         shadowColor: "#000000",
         shadowOffset: {
             width: 0,
-            height: 1,
+            height: 2,
         },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
+        shadowOpacity: 0.17,
+        shadowRadius: 2.54,
         elevation: 3,
     },
 };
