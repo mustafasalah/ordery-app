@@ -1,26 +1,32 @@
-import { StyleSheet, SafeAreaView, View, Platform } from "react-native";
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Platform,
+    ScrollView,
+} from "react-native";
 import React from "react";
 import defaultStyle from "../configs/defaultStyle";
 import colors from "../configs/colors";
+import layout from "../configs/layout";
 
 const Screen = ({ safe = false, children }) => {
     if (safe)
         return (
             <SafeAreaView
-                style={[
-                    styles.container,
-                    defaultStyle.containerPadding,
-                    defaultStyle.safeContainer,
-                ]}
+                style={[styles.container, defaultStyle.safeContainer]}
             >
                 {children}
             </SafeAreaView>
         );
 
     return (
-        <View style={[styles.container, defaultStyle.containerPadding]}>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={styles.container}
+        >
             {children}
-        </View>
+        </ScrollView>
     );
 };
 
@@ -30,5 +36,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.gray,
+        marginTop: 15,
+        marginBottom: 65,
+        paddingHorizontal: layout.screenHorizontalPadding,
     },
 });

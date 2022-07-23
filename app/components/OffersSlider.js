@@ -9,7 +9,6 @@ import React, { useRef, useState } from "react";
 import colors from "../configs/colors";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import layout from "../configs/layout";
-import { Shadow } from "react-native-shadow-2";
 import defaultStyle from "../configs/defaultStyle";
 
 const OffersSlider = () => {
@@ -49,6 +48,7 @@ const OffersSlider = () => {
                         </View>
                     );
                 }}
+                autoplayInterval={6000}
                 loop
                 autoplay
             />
@@ -56,22 +56,9 @@ const OffersSlider = () => {
             <Pagination
                 dotsLength={sliders.current.length}
                 activeDotIndex={activeSlide}
-                containerStyle={{
-                    paddingVertical: 15,
-                }}
-                dotStyle={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
-                    borderWidth: 3,
-                    marginHorizontal: -3,
-                    borderColor: colors.primary,
-                    backgroundColor: colors.primary,
-                }}
-                inactiveDotStyle={{
-                    backgroundColor: colors.gray,
-                    borderColor: colors.border,
-                }}
+                containerStyle={styles.pagination}
+                dotStyle={styles.paginationDot}
+                inactiveDotStyle={styles.paginationInactiveDot}
                 inactiveDotOpacity={1}
                 inactiveDotScale={1}
             />
@@ -87,5 +74,22 @@ const styles = StyleSheet.create({
         height: null,
         aspectRatio: 2.3,
         borderRadius: 10,
+    },
+    pagination: {
+        paddingTop: 15,
+        paddingBottom: 0,
+    },
+    paginationDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        borderWidth: 3,
+        marginHorizontal: -3,
+        borderColor: colors.primary,
+        backgroundColor: colors.primary,
+    },
+    paginationInactiveDot: {
+        backgroundColor: colors.gray,
+        borderColor: colors.border,
     },
 });

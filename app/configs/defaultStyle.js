@@ -1,15 +1,10 @@
 import Constants from "expo-constants";
 import { I18nManager } from "react-native";
 import colors from "./colors";
-import layout from "./layout";
 
 const defaultStyle = {
     safeContainer: {
         marginTop: Constants.statusBarHeight,
-    },
-    containerPadding: {
-        paddingTop: 25,
-        paddingHorizontal: layout.screenHorizontalPadding,
     },
     appTextStyle: {
         fontFamily: "Almarai_400Regular",

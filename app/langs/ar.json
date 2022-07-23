@@ -1,5 +1,18 @@
 {
     "translation": {
+        "most_wanted_categories": "الأصناف الأكثر طلباً",
+        "more_categories": "المزيد من الأصناف",
+        "pizza": "بيتزا",
+        "burger": "بيرقر",
+        "dessert": "تحلية",
+        "chicken": "دجاج",
+        "steak": "كباب",
+        "fish": "بحري",
+        "shawarma": "شاورما",
+        "asian": "آسيوي",
+        "drinks": "مشروبات",
+        "fries": "فرايتز",
+        "discover_by_categories": "إستكشف بالأصناف",
         "recommended_restaurants": "مطاعم موصى بها",
         "view_all": "عرض الكل",
         "favourites": "المفضلات",

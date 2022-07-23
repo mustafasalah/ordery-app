@@ -1,26 +1,33 @@
-import { Pressable, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import Label from "./Label";
 import HorizontalListItem from "./HorizontalListItem";
 
 const HorizontalList = ({ data, label }) => {
     return (
-        <Pressable>
+        <View style={styles.wrapper}>
             <Label icon={label.icon} onViewAll={label.onViewAll}>
                 {label.title}
             </Label>
-            <ScrollView style={styles.container} horizontal>
+            <ScrollView
+                style={styles.container}
+                showsHorizontalScrollIndicator={false}
+                horizontal
+            >
                 {data.map((props) => (
                     <HorizontalListItem key={props.label} {...props} />
                 ))}
             </ScrollView>
-        </Pressable>
+        </View>
     );
 };
 
 export default HorizontalList;
 
 const styles = StyleSheet.create({
+    wrapper: {
+        marginTop: 25,
+    },
     container: {
         flexDirection: "row",
     },

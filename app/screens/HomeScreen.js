@@ -10,7 +10,8 @@ import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
 import AppText from "../components/AppText";
 import HorizontalList from "../components/HorizontalList";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { faShapes, faUtensils } from "@fortawesome/free-solid-svg-icons";
+import CategoriesList from "../components/CategoriesList";
 
 const HomeScreen = () => {
     const { t } = useTranslation();
@@ -26,6 +27,26 @@ const HomeScreen = () => {
             label: "شيكانو",
             onPress: () => console.log("chicano!!!"),
         },
+        {
+            imageSource: require("../assets/pizzahut.png"),
+            label: "بيتزا هت",
+            onPress: () => console.log("pizzahut!!!"),
+        },
+        {
+            imageSource: require("../assets/foodpoint.png"),
+            label: "فودبوينت",
+            onPress: () => console.log("foodpoint!!!"),
+        },
+        {
+            imageSource: require("../assets/mc.png"),
+            label: "ماكدونالدز",
+            onPress: () => console.log("mc!!!"),
+        },
+        {
+            imageSource: require("../assets/debonairs.png"),
+            label: "ديبونيرز",
+            onPress: () => console.log("debonairs!!!"),
+        },
     ]);
 
     return (
@@ -38,6 +59,9 @@ const HomeScreen = () => {
                     title: t("recommended_restaurants"),
                     onViewAll: () => console.log("pressed!"),
                 }}
+            />
+            <CategoriesList
+                label={{ title: t("discover_by_categories"), icon: faShapes }}
             />
         </Screen>
     );
