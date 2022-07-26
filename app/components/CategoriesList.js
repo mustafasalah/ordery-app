@@ -12,12 +12,9 @@ import SteakIcon from "../assets/categories/steak.svg";
 import SpaghettiIcon from "../assets/categories/spaghetti.svg";
 import BobaIcon from "../assets/categories/boba.svg";
 import FriesIcon from "../assets/categories/fries.svg";
-import AppButton from "./AppButton";
 import { useTranslation } from "react-i18next";
 import colors from "../configs/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import UpDoubleArrow from "../assets/angles-up-solid.svg";
-import DownDoubleArrow from "../assets/angles-down-solid.svg";
 import AppText from "./AppText";
 import {
     faAngleDoubleDown,

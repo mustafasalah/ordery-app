@@ -1,5 +1,12 @@
 {
     "translation": {
+        "order_now": "أطلـب الآن",
+        "minute": "دقيقة",
+        "to": "إلى",
+        "delivery_from": "التوصيل من",
+        "from": "من",
+        "new": "جديد!",
+        "trending_meals": "الوجبات الأكثر طلباً",
         "most_wanted_categories": "الأصناف الأكثر طلباً",
         "more_categories": "المزيد من الأصناف",
         "pizza": "بيتزا",
