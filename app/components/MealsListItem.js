@@ -7,7 +7,14 @@ import { useTranslation } from "react-i18next";
 import DeliveryTime from "./DeliveryTime";
 import AppButton from "./AppButton";
 
-const MealsListItem = ({ id, imageSrc, name, restaurant, deliveryEST }) => {
+const MealsListItem = ({
+    id,
+    imageSrc,
+    name,
+    restaurant,
+    deliveryEST,
+    isNew,
+}) => {
     const { t } = useTranslation();
 
     return (
@@ -18,7 +25,7 @@ const MealsListItem = ({ id, imageSrc, name, restaurant, deliveryEST }) => {
                     style={styles.image}
                     resizeMode="cover"
                 />
-                <AppText style={styles.new}>{t("new")}</AppText>
+                {isNew && <AppText style={styles.new}>{t("new")}</AppText>}
             </View>
             <View style={styles.infoContainer}>
                 <View>
