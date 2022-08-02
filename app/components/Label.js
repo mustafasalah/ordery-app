@@ -25,7 +25,12 @@ const Label = ({ children, icon, onViewAll }) => {
                 {children}
             </AppText>
             {onViewAll ? (
-                <AppButton style={styles.button} onPress={onViewAll} noShadow>
+                <AppButton
+                    style={styles.button}
+                    textStyle={styles.textButton}
+                    onPress={onViewAll}
+                    noShadow
+                >
                     {t("view_all")}
                     {"  "}
                     <FontAwesomeIcon
@@ -44,9 +49,11 @@ export default Label;
 const styles = StyleSheet.create({
     button: {
         backgroundColor: "transparent",
-        color: colors.primary,
         paddingHorizontal: 0,
         paddingVertical: 0,
+    },
+    textButton: {
+        color: colors.primary,
         fontFamily: "Almarai_700Bold",
         fontSize: 14,
     },

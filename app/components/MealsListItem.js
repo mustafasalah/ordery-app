@@ -35,7 +35,12 @@ const MealsListItem = ({
                     </AppText>
                     <DeliveryTime deliveryEST={deliveryEST} />
                 </View>
-                <AppButton style={styles.orderBtn}>{t("order_now")}</AppButton>
+                <AppButton
+                    style={styles.orderBtn}
+                    textStyle={styles.orderTextBtn}
+                >
+                    {t("order_now")}
+                </AppButton>
             </View>
         </View>
     );
@@ -45,11 +50,13 @@ export default MealsListItem;
 
 const styles = StyleSheet.create({
     orderBtn: {
-        fontSize: 13,
         paddingVertical: 4,
         paddingHorizontal: 16,
         alignSelf: "flex-start",
         marginTop: "auto",
+    },
+    orderTextBtn: {
+        fontSize: 13,
     },
     infoContainer: {
         paddingVertical: 12,
