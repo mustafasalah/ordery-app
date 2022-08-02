@@ -16,6 +16,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import HomeScreen from "./app/screens/HomeScreen";
 import AppNavigator from "./app/navigators/AppNavigator";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -40,7 +43,13 @@ export default function App() {
     return (
         <NavigationContainer>
             <View style={styles.screenContainer} onLayout={onLayoutRootView}>
-                <AppNavigator />
+                <Navigator
+                    initialRouteName="welcome"
+                    screenOptions={{ headerShown: false }}
+                >
+                    <Screen name="welcome" component={WelcomeScreen} />
+                    <Screen name="app" component={AppNavigator} />
+                </Navigator>
                 <StatusBar style="auto" />
             </View>
         </NavigationContainer>
