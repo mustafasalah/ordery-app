@@ -4,15 +4,18 @@ import AppText from "../components/AppText";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { useTranslation } from "react-i18next";
 import AppButton from "./AppButton";
-import { FontAwesome } from "@expo/vector-icons";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
 import Illustration1 from "../assets/illustration-1.svg";
 import Illustration2 from "../assets/illustration-2.svg";
 import Illustration3 from "../assets/illustration-3.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const OnBoard = () => {
     const { t } = useTranslation();
+    const navigation = useNavigation();
     const carousel = useRef();
     const [activeIllustration, setActiveIllustration] = useState(0);
     const illustrations = useRef([
@@ -40,7 +43,7 @@ const OnBoard = () => {
     ]);
 
     return (
-        <View>
+        <View style={styles.container}>
             <View>
                 <Carousel
                     ref={carousel}
@@ -96,12 +99,14 @@ const OnBoard = () => {
             <View style={styles.btnsContainer}>
                 <AppButton
                     style={[styles.navigationBtns, styles.skipBtn]}
+                    textStyle={[styles.navigationTextBtns, styles.skipTextBtn]}
                     noShadow
                 >
                     {t("skip")}
                 </AppButton>
                 <AppButton
                     style={[styles.navigationBtns, styles.nextBtn]}
+                    textStyle={[styles.navigationTextBtns, styles.nextTextBtn]}
                     onPress={() => {
                         if (
                             activeIllustration <
@@ -110,6 +115,7 @@ const OnBoard = () => {
                             carousel.current.snapToNext();
                         } else {
                             // Go to Home Screen
+                            navigation.navigate("app");
                         }
                     }}
                     noShadow
@@ -118,9 +124,9 @@ const OnBoard = () => {
                         ? t("start")
                         : t("next")}
                     {"  "}
-                    <FontAwesome
-                        name={I18nManager.isRTL ? "angle-left" : "angle-right"}
-                        size={24}
+                    <FontAwesomeIcon
+                        icon={I18nManager.isRTL ? faAngleLeft : faAngleRight}
+                        size={20}
                         color={colors.primary}
                     />
                 </AppButton>
@@ -136,16 +142,22 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
         paddingHorizontal: 0,
         paddingVertical: 0,
+    },
+    navigationTextBtns: {
         fontSize: 18,
     },
     nextBtn: {
+        paddingStart: 20,
+    },
+    nextTextBtn: {
         color: colors.primary,
-        paddingEnd: 20,
     },
     skipBtn: {
+        paddingEnd: 20,
+    },
+    skipTextBtn: {
         color: colors.secondary75,
         fontFamily: "Almarai_700Bold",
-        paddingStart: 20,
     },
     btnsContainer: {
         flexDirection: "row",
