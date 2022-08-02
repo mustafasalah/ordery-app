@@ -10,16 +10,7 @@ const defaultStyle = {
         fontFamily: "Almarai_400Regular",
         writingDirection: I18nManager.isRTL ? "rtl" : "ltr",
     },
-    primaryBtn: {
-        borderRadius: 50,
-        backgroundColor: colors.primary,
-        color: colors.white,
-        fontSize: 16,
-        fontFamily: "Almarai_800ExtraBold",
-        paddingVertical: 8,
-        paddingHorizontal: 20,
-        textAlign: "center",
-    },
+
     textShadow: {
         textShadowColor: "rgba(0, 0, 0, 0.2)",
         textShadowOffset: { width: 0, height: 1 },

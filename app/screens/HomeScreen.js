@@ -1,21 +1,29 @@
 import { StyleSheet, View, Image, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Screen from "../components/Screen";
 import OffersSlider from "../components/OffersSlider";
 import Label from "../components/Label";
 import { useTranslation } from "react-i18next";
-import AppButton from "../components/AppButton";
-import { style } from "deprecated-react-native-prop-types/DeprecatedTextPropTypes";
-import colors from "../configs/colors";
-import defaultStyle from "../configs/defaultStyle";
-import AppText from "../components/AppText";
 import HorizontalList from "../components/HorizontalList";
 import { faShapes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import CategoriesList from "../components/CategoriesList";
 import TrendingMeals from "../components/TrendingMeals";
+import LocationModal from "../components/LocationModal";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+    // const scrollView = useRef(null);
+    // useEffect(() => {
+    //     const unsubscribe = navigation.addListener("tabPress", (e) => {
+    //         // Prevent default behavior
+    //         e.preventDefault();
+    //     });
+
+    //     return unsubscribe;
+    // }, [navigation]);
+
     const { t } = useTranslation();
+
+    const [locationModalShown, setLocationModalShown] = useState(true);
 
     const [meals, setMeals] = useState([
         {
@@ -124,6 +132,13 @@ const HomeScreen = () => {
                 label={{ title: t("discover_by_categories"), icon: faShapes }}
             />
             <TrendingMeals meals={meals} />
+            <LocationModal
+                visible={locationModalShown}
+                onClose={() => {
+                    setLocationModalShown(false);
+                    console.log("Closed!");
+                }}
+            />
         </Screen>
     );
 };

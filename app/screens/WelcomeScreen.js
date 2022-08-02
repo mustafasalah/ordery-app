@@ -11,16 +11,17 @@ import colors from "../configs/colors";
 import { useTranslation } from "react-i18next";
 import layout from "../configs/layout";
 import AppButton from "../components/AppButton";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import defaultStyle from "../configs/defaultStyle";
 import OnBoard from "../components/OnBoard";
+import { faPlus, faSignIn } from "@fortawesome/free-solid-svg-icons";
 
 const WelcomeScreen = () => {
     const { t } = useTranslation();
     const { width: windowWidth } = useWindowDimensions();
 
     return (
-        <Screen>
+        <View style={styles.container}>
             <ImageBackground
                 imageStyle="cover"
                 source={require("../assets/bg.png")}
@@ -43,8 +44,8 @@ const WelcomeScreen = () => {
                 >
                     <AppButton style={[styles.authBtns]}>
                         {
-                            <FontAwesome
-                                name="plus"
+                            <FontAwesomeIcon
+                                icon={faPlus}
                                 size={18}
                                 color={colors.white}
                             />
@@ -54,11 +55,12 @@ const WelcomeScreen = () => {
                     </AppButton>
                     <AppButton
                         style={[styles.authBtns, styles.loginBtn]}
+                        textStyle={styles.loginTextBtn}
                         noShadow
                     >
                         {
-                            <FontAwesome
-                                name="sign-in"
+                            <FontAwesomeIcon
+                                icon={faSignIn}
                                 size={18}
                                 color={colors.secondary}
                             />
@@ -68,17 +70,23 @@ const WelcomeScreen = () => {
                     </AppButton>
                 </View>
             </ImageBackground>
-        </Screen>
+        </View>
     );
 };
 
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: colors.gray,
+    },
     loginBtn: {
         backgroundColor: "transparent",
-        color: colors.secondary,
         marginTop: 10,
+    },
+    loginTextBtn: {
+        color: colors.secondary,
     },
     authBtns: {
         width: 200,

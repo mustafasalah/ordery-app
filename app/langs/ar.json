@@ -1,5 +1,8 @@
 {
     "translation": {
+        "confirm": "تأكيـد",
+        "where_is_delivery": "ما هي منطقة التوصيل؟",
+        "delivery_destination": "وجهة التوصيل",
         "order_now": "أطلـب الآن",
         "minute": "دقيقة",
         "to": "إلى",
