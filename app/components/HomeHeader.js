@@ -7,8 +7,10 @@ import AppButton from "./AppButton";
 import colors from "../configs/colors";
 import layout from "../configs/layout";
 import defaultStyle from "../configs/defaultStyle";
+import { useDispatch } from "react-redux";
 
 const HomeHeader = ({ navigation, route, options }) => {
+    const dispatch = useDispatch();
     return (
         <View style={styles.header}>
             <AppButton style={styles.headerBtns} noShadow>
@@ -19,7 +21,11 @@ const HomeHeader = ({ navigation, route, options }) => {
                 source={require("../assets/dark-logo.png")}
                 resizeMode="contain"
             />
-            <AppButton style={styles.headerBtns} noShadow>
+            <AppButton
+                style={styles.headerBtns}
+                onPress={() => dispatch.location.showModal()}
+                noShadow
+            >
                 <FontAwesomeIcon
                     icon={faMapLocationDot}
                     size={20}

@@ -12,7 +12,7 @@ const insetShadow = {
     elevation: 3,
 };
 
-const TextField = ({ label, placeholder, value, style, icon }) => {
+const TextField = ({ label, style, icon, ...props }) => {
     return (
         <View style={[style]}>
             {label && <FieldLabel style={styles.label}>{label}</FieldLabel>}
@@ -20,8 +20,8 @@ const TextField = ({ label, placeholder, value, style, icon }) => {
                 <InsetShadow containerStyle={styles.input} {...insetShadow}>
                     <TextInput
                         style={styles.inputText}
-                        placeholder={placeholder}
                         placeholderTextColor={colors.secondary50}
+                        {...props}
                     />
                     {icon && (
                         <FontAwesomeIcon

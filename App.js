@@ -17,6 +17,8 @@ import * as SplashScreen from "expo-splash-screen";
 import HomeScreen from "./app/screens/HomeScreen";
 import AppNavigator from "./app/navigators/AppNavigator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider } from "react-redux";
+import store from "./app/configs/store";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -41,18 +43,23 @@ export default function App() {
     if (!fontsLoaded) return null;
 
     return (
-        <NavigationContainer>
-            <View style={styles.screenContainer} onLayout={onLayoutRootView}>
-                <Navigator
-                    initialRouteName="welcome"
-                    screenOptions={{ headerShown: false }}
+        <Provider store={store}>
+            <NavigationContainer>
+                <View
+                    style={styles.screenContainer}
+                    onLayout={onLayoutRootView}
                 >
-                    <Screen name="welcome" component={WelcomeScreen} />
-                    <Screen name="app" component={AppNavigator} />
-                </Navigator>
-                <StatusBar style="auto" />
-            </View>
-        </NavigationContainer>
+                    <Navigator
+                        initialRouteName="welcome"
+                        screenOptions={{ headerShown: false }}
+                    >
+                        <Screen name="welcome" component={WelcomeScreen} />
+                        <Screen name="app" component={AppNavigator} />
+                    </Navigator>
+                    <StatusBar style="auto" />
+                </View>
+            </NavigationContainer>
+        </Provider>
     );
 }
 

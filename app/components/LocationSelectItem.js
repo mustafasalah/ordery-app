@@ -5,9 +5,15 @@ import colors from "../configs/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
-const LocationSelectItem = ({ onPress, label, value }) => {
+const LocationSelectItem = ({ onPress, label, value, selected }) => {
     return (
-        <Pressable onPress={() => onPress(value)} style={styles.container}>
+        <Pressable
+            onPress={() => onPress(label)}
+            style={[
+                styles.container,
+                { backgroundColor: selected ? colors.border : colors.gray },
+            ]}
+        >
             <FontAwesomeIcon
                 icon={faLocationDot}
                 size={14}

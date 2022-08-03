@@ -1,5 +1,5 @@
 import { Modal, StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useCallback } from "react";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
 import layout from "../configs/layout";
@@ -13,9 +13,25 @@ import {
 import TextField from "./forms/TextField";
 import LocationsList from "./LocationsList";
 import AppButton from "./AppButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const LocationModal = ({ visible, onClose }) => {
     const { t } = useTranslation();
+    const selectedLocation = useSelector((state) => state.location.selected);
+    const locationsList = useSelector((state) =>
+        state.location.list.filter((location) =>
+            location.label.startsWith(selectedLocation)
+        )
+    );
+    const dispatch = useDispatch();
+
+    const isValidLocation = useCallback(() => {
+        return locationsList.some(({ label }) => label === selectedLocation);
+    }, [locationsList, selectedLocation]);
+
+    const handleLocationSet = useCallback((location) =>
+        dispatch.location.set(location)
+    );
 
     return (
         <Modal
@@ -32,11 +48,25 @@ const LocationModal = ({ visible, onClose }) => {
                     style={styles.field}
                     label={t("where_is_delivery")}
                     icon={faMagnifyingGlassLocation}
+                    value={selectedLocation}
+                    onChangeText={handleLocationSet}
                 />
-                <LocationsList style={styles.list} />
+                <LocationsList
+                    style={styles.list}
+                    data={locationsList}
+                    onSelect={handleLocationSet}
+                    selectLocation={selectedLocation}
+                />
                 <AppButton
                     icon={faCheck}
-                    style={styles.button}
+                    style={[
+                        styles.button,
+                        {
+                            backgroundColor: isValidLocation()
+                                ? colors.primary
+                                : colors.secondary50,
+                        },
+                    ]}
                     onPress={() => {
                         // Submit selection logic
 

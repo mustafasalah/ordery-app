@@ -9,6 +9,7 @@ import { faShapes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import CategoriesList from "../components/CategoriesList";
 import TrendingMeals from "../components/TrendingMeals";
 import LocationModal from "../components/LocationModal";
+import { useSelector, useDispatch } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
     // const scrollView = useRef(null);
@@ -21,10 +22,9 @@ const HomeScreen = ({ navigation }) => {
     //     return unsubscribe;
     // }, [navigation]);
 
+    const locationModalShown = useSelector((state) => state.location.visible);
+    const dispatch = useDispatch();
     const { t } = useTranslation();
-
-    const [locationModalShown, setLocationModalShown] = useState(true);
-
     const [meals, setMeals] = useState([
         {
             id: 1,
@@ -135,7 +135,7 @@ const HomeScreen = ({ navigation }) => {
             <LocationModal
                 visible={locationModalShown}
                 onClose={() => {
-                    setLocationModalShown(false);
+                    dispatch.location.hideModal();
                     console.log("Closed!");
                 }}
             />
