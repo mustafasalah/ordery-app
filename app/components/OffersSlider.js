@@ -10,12 +10,10 @@ import colors from "../configs/colors";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import layout from "../configs/layout";
 import defaultStyle from "../configs/defaultStyle";
+import { useSelector } from "react-redux";
 
 const OffersSlider = () => {
-    const sliders = useRef([
-        require("../assets/banner.png"),
-        require("../assets/banner.png"),
-    ]);
+    const sliders = useSelector((state) => state.offers);
     const carousel = useRef();
     const { width: windowWidth } = useWindowDimensions();
     const carouselWidth = windowWidth - layout.screenHorizontalPadding * 2;
@@ -27,11 +25,7 @@ const OffersSlider = () => {
                 ref={carousel}
                 sliderWidth={carouselWidth}
                 itemWidth={carouselWidth}
-                data={
-                    I18nManager.isRTL
-                        ? sliders.current.reverse()
-                        : sliders.current
-                }
+                data={I18nManager.isRTL ? sliders.reverse() : sliders}
                 onSnapToItem={(index) => setActiveSlide(index)}
                 renderItem={({ item, index }) => {
                     return (
@@ -42,7 +36,7 @@ const OffersSlider = () => {
                         >
                             <Image
                                 style={styles.sliderImage}
-                                source={item}
+                                source={item.uri}
                                 resizeMode="contain"
                             />
                         </View>
@@ -54,7 +48,7 @@ const OffersSlider = () => {
             />
 
             <Pagination
-                dotsLength={sliders.current.length}
+                dotsLength={sliders.length}
                 activeDotIndex={activeSlide}
                 containerStyle={styles.pagination}
                 dotStyle={styles.paginationDot}
