@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, ScrollView } from "react-native";
+import { StyleSheet, View, Image, ScrollView, I18nManager } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import Screen from "../components/Screen";
 import OffersSlider from "../components/OffersSlider";
@@ -84,44 +84,22 @@ const HomeScreen = ({ navigation }) => {
         },
     ]);
 
-    const [restData, setRestData] = useState([
-        {
-            imageSource: require("../assets/kfc.png"),
-            label: "كنتاكي",
-            onPress: () => console.log("kfc!!!"),
-        },
-        {
-            imageSource: require("../assets/chicano.png"),
-            label: "شيكانو",
-            onPress: () => console.log("chicano!!!"),
-        },
-        {
-            imageSource: require("../assets/pizzahut.png"),
-            label: "بيتزا هت",
-            onPress: () => console.log("pizzahut!!!"),
-        },
-        {
-            imageSource: require("../assets/foodpoint.png"),
-            label: "فودبوينت",
-            onPress: () => console.log("foodpoint!!!"),
-        },
-        {
-            imageSource: require("../assets/mc.png"),
-            label: "ماكدونالدز",
-            onPress: () => console.log("mc!!!"),
-        },
-        {
-            imageSource: require("../assets/debonairs.png"),
-            label: "ديبونيرز",
-            onPress: () => console.log("debonairs!!!"),
-        },
-    ]);
+    const restaurants = useSelector((state) =>
+        state.restaurants.map(({ id, name, logo }) => ({
+            id,
+            label: name[I18nManager.isRTL ? "ar" : "en"],
+            imageSource: logo,
+            onPress: () => {
+                console.log("rest with id: " + id);
+            },
+        }))
+    );
 
     return (
         <Screen>
             <OffersSlider />
             <HorizontalList
-                data={restData}
+                data={restaurants}
                 label={{
                     icon: faUtensils,
                     title: t("recommended_restaurants"),

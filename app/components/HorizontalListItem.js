@@ -4,7 +4,7 @@ import AppText from "./AppText";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
 
-const HorizontalListItem = ({ label, imageSource, onPress }) => {
+const HorizontalListItem = ({ id, label, imageSource, onPress }) => {
     return (
         <Pressable style={styles.item} onPress={onPress}>
             <View style={styles.imageContainer}>

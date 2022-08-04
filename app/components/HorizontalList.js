@@ -15,7 +15,7 @@ const HorizontalList = ({ data, label }) => {
                 horizontal
             >
                 {data.map((props) => (
-                    <HorizontalListItem key={props.label} {...props} />
+                    <HorizontalListItem key={props.id} {...props} />
                 ))}
             </ScrollView>
         </View>
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
         marginTop: 25,
     },
     container: {
-        flexDirection: "row",
+        // flexDirection: "row",
     },
 });
