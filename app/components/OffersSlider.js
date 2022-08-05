@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     pagination: {
         paddingTop: 5,
         paddingBottom: 0,
+        marginEnd: layout.screenHorizontalPadding,
     },
     paginationDot: {
         width: 8,
