@@ -16,24 +16,21 @@ const OffersSlider = () => {
     const sliders = useSelector((state) => state.offers);
     const carousel = useRef();
     const { width: windowWidth } = useWindowDimensions();
-    const carouselWidth = windowWidth - layout.screenHorizontalPadding * 2;
+    const carouselWidth = windowWidth;
     const [activeSlide, setActiveSlide] = useState(0);
 
     return (
-        <View>
+        <View style={styles.container}>
             <Carousel
                 ref={carousel}
                 sliderWidth={carouselWidth}
                 itemWidth={carouselWidth}
                 data={I18nManager.isRTL ? sliders.reverse() : sliders}
                 onSnapToItem={(index) => setActiveSlide(index)}
+                slideStyle={styles.slideWrapper}
                 renderItem={({ item, index }) => {
                     return (
-                        <View
-                            style={{
-                                ...defaultStyle.shadow,
-                            }}
-                        >
+                        <View style={styles.slide}>
                             <Image
                                 style={styles.sliderImage}
                                 source={item.uri}
@@ -63,6 +60,18 @@ const OffersSlider = () => {
 export default OffersSlider;
 
 const styles = StyleSheet.create({
+    container: {
+        marginStart: -layout.screenHorizontalPadding,
+    },
+    slideWrapper: {
+        paddingHorizontal: layout.screenHorizontalPadding,
+        paddingTop: 5,
+        paddingBottom: 10,
+    },
+    slide: {
+        borderRadius: 10,
+        ...defaultStyle.shadow,
+    },
     sliderImage: {
         width: "100%",
         height: null,
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     pagination: {
-        paddingTop: 15,
+        paddingTop: 5,
         paddingBottom: 0,
     },
     paginationDot: {

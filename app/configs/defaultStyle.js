@@ -1,10 +1,10 @@
 import Constants from "expo-constants";
-import { I18nManager } from "react-native";
+import { I18nManager, Platform } from "react-native";
 import colors from "./colors";
 
 const defaultStyle = {
     safeContainer: {
-        marginTop: Constants.statusBarHeight,
+        marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
     },
     appTextStyle: {
         fontFamily: "Almarai_400Regular",

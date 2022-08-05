@@ -13,19 +13,14 @@ import layout from "../configs/layout";
 const Screen = ({ safe = false, children }) => {
     if (safe)
         return (
-            <SafeAreaView
-                style={[styles.container, defaultStyle.safeContainer]}
-            >
-                {children}
+            <SafeAreaView style={defaultStyle.safeContainer}>
+                <View style={styles.container}>{children}</View>
             </SafeAreaView>
         );
 
     return (
-        <ScrollView
-            showsVerticalScrollIndicator={false}
-            style={styles.container}
-        >
-            {children}
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.container}>{children}</View>
         </ScrollView>
     );
 };
@@ -39,5 +34,6 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 65,
         paddingHorizontal: layout.screenHorizontalPadding,
+        overflow: "visible",
     },
 });
