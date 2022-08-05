@@ -7,7 +7,6 @@ import {
 import React from "react";
 import Label from "./Label";
 import HorizontalListItem from "./HorizontalListItem";
-import layout from "../configs/layout";
 
 const HorizontalList = ({ data, label }) => {
     const { width: windowWidth } = useWindowDimensions();
