@@ -1,16 +1,27 @@
-import { View, ScrollView, StyleSheet } from "react-native";
+import {
+    View,
+    ScrollView,
+    StyleSheet,
+    useWindowDimensions,
+} from "react-native";
 import React from "react";
 import Label from "./Label";
 import HorizontalListItem from "./HorizontalListItem";
+import layout from "../configs/layout";
 
 const HorizontalList = ({ data, label }) => {
+    const { width: windowWidth } = useWindowDimensions();
+
     return (
         <View style={styles.wrapper}>
             <Label icon={label.icon} onViewAll={label.onViewAll}>
                 {label.title}
             </Label>
             <ScrollView
-                style={styles.container}
+                style={{
+                    width: windowWidth - 8,
+                    marginStart: -8,
+                }}
                 showsHorizontalScrollIndicator={false}
                 horizontal
             >
@@ -27,8 +38,5 @@ export default HorizontalList;
 const styles = StyleSheet.create({
     wrapper: {
         marginTop: 25,
-    },
-    container: {
-        // flexDirection: "row",
     },
 });
