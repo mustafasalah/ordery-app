@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import "intl-pluralrules";
+import "./app/configs/translation";
 import colors from "./app/configs/colors";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import "./app/configs/translation";
@@ -14,7 +14,6 @@ import {
 } from "@expo-google-fonts/almarai";
 import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import HomeScreen from "./app/screens/HomeScreen";
 import AppNavigator from "./app/navigators/AppNavigator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider } from "react-redux";

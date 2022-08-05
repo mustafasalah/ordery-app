@@ -1,12 +1,10 @@
 import {
     StyleSheet,
     View,
-    Image,
     ImageBackground,
     useWindowDimensions,
 } from "react-native";
 import React from "react";
-import Screen from "../components/Screen";
 import colors from "../configs/colors";
 import { useTranslation } from "react-i18next";
 import layout from "../configs/layout";
@@ -15,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import defaultStyle from "../configs/defaultStyle";
 import OnBoard from "../components/OnBoard";
 import { faPlus, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import Logo from "../components/Logo";
 
 const WelcomeScreen = () => {
     const { t } = useTranslation();
@@ -27,12 +26,8 @@ const WelcomeScreen = () => {
                 source={require("../assets/bg.png")}
                 style={[styles.background]}
             >
-                <View style={styles.logoContainer}>
-                    <Image source={require("../assets/logo.png")} />
-                </View>
-
+                <Logo />
                 <OnBoard />
-
                 <View
                     style={[
                         styles.authContainer,
@@ -132,10 +127,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingTop: layout.safeStatusbarHeight,
         paddingHorizontal: layout.screenHorizontalPadding,
-    },
-    logoContainer: {
-        alignItems: "center",
-        marginTop: 20,
     },
     illustrationContainer: {
         aspectRatio: 1,

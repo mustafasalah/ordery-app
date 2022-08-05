@@ -2,45 +2,22 @@ import React, { useState, useRef } from "react";
 import { StyleSheet, View, I18nManager } from "react-native";
 import AppText from "../components/AppText";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-import { useTranslation } from "react-i18next";
 import AppButton from "./AppButton";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
-import Illustration1 from "../assets/illustration-1.svg";
-import Illustration2 from "../assets/illustration-2.svg";
-import Illustration3 from "../assets/illustration-3.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useNavigation } from "@react-navigation/native";
+import getWelcomeIllustrations from "../services/illustrationsService";
+import { useTranslation } from "react-i18next";
+
+const illustrations = getWelcomeIllustrations();
 
 const OnBoard = () => {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const carousel = useRef();
     const [activeIllustration, setActiveIllustration] = useState(0);
-    const illustrations = useRef([
-        {
-            illustration: (
-                <Illustration1 style={styles.illustration} height={220} />
-            ),
-            title: t("welcome_head_1"),
-            description: t("welcome_description_1"),
-        },
-        {
-            illustration: (
-                <Illustration2 style={styles.illustration} height={220} />
-            ),
-            title: t("welcome_head_2"),
-            description: t("welcome_description_2"),
-        },
-        {
-            illustration: (
-                <Illustration3 style={styles.illustration} height={220} />
-            ),
-            title: t("welcome_head_3"),
-            description: t("welcome_description_3"),
-        },
-    ]);
 
     return (
         <View style={styles.container}>
@@ -50,11 +27,7 @@ const OnBoard = () => {
                     itemWidth={360}
                     sliderWidth={360}
                     onSnapToItem={(index) => setActiveIllustration(index)}
-                    data={
-                        I18nManager.isRTL
-                            ? illustrations.current.reverse()
-                            : illustrations.current
-                    }
+                    data={illustrations}
                     renderItem={({ item, index }) => {
                         return (
                             <View style={styles.illustrationContainer}>
@@ -72,7 +45,7 @@ const OnBoard = () => {
                                     {item.description}
                                 </AppText>
                                 <Pagination
-                                    dotsLength={illustrations.current.length}
+                                    dotsLength={illustrations.length}
                                     activeDotIndex={activeIllustration}
                                     containerStyle={{
                                         position: "absolute",
@@ -108,10 +81,7 @@ const OnBoard = () => {
                     style={[styles.navigationBtns, styles.nextBtn]}
                     textStyle={[styles.navigationTextBtns, styles.nextTextBtn]}
                     onPress={() => {
-                        if (
-                            activeIllustration <
-                            illustrations.current.length - 1
-                        ) {
+                        if (activeIllustration < illustrations.length - 1) {
                             carousel.current.snapToNext();
                         } else {
                             // Go to Home Screen
@@ -120,7 +90,7 @@ const OnBoard = () => {
                     }}
                     noShadow
                 >
-                    {activeIllustration >= illustrations.current.length - 1
+                    {activeIllustration >= illustrations.length - 1
                         ? t("start")
                         : t("next")}
                     {"  "}
@@ -190,11 +160,5 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 20,
         ...defaultStyle.shadow,
-    },
-    illustration: {
-        marginTop: -50,
-        width: 220,
-        height: 220,
-        resizeMode: "contain",
     },
 });
