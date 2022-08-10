@@ -7,9 +7,11 @@ import defaultStyle from "../configs/defaultStyle";
 
 const FormLabel = ({ children, icon }) => {
     return (
-        <View style={styles.container}>
-            <FontAwesomeIcon icon={icon} size={24} color={colors.primary} />
-            <AppText style={styles.label}>{children}</AppText>
+        <View style={styles.wrapper}>
+            <View style={styles.container}>
+                <FontAwesomeIcon icon={icon} size={24} color={colors.primary} />
+                <AppText style={styles.label}>{children}</AppText>
+            </View>
         </View>
     );
 };
@@ -17,6 +19,7 @@ const FormLabel = ({ children, icon }) => {
 export default FormLabel;
 
 const styles = StyleSheet.create({
+    wrapper: { overflow: "hidden" },
     container: {
         justifyContent: "flex-end",
         alignItems: "center",

@@ -4,6 +4,7 @@ import colors from "./colors";
 
 const defaultStyle = {
     safeContainer: {
+        flex: 1,
         marginTop: Platform.OS === "android" ? Constants.statusBarHeight : 0,
     },
     appTextStyle: {

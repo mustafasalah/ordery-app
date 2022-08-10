@@ -1,9 +1,10 @@
 import { I18nManager, StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import InsetShadow from "react-native-inset-shadow";
-import FieldLabel from "../FieldLabel";
+import FieldLabel from "./FieldLabel";
 import colors from "../../configs/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { useFormikContext } from "formik";
 
 const insetShadow = {
     shadowOffset: 0,
@@ -12,15 +13,20 @@ const insetShadow = {
     elevation: 3,
 };
 
-const TextField = ({ label, style, icon, ...props }) => {
+const FormField = ({ label, style, icon, name, ...props }) => {
+    const { handleChange, handleBlur, values, touched } = useFormikContext();
+
     return (
-        <View style={[style]}>
+        <View style={[styles.container, style]}>
             {label && <FieldLabel style={styles.label}>{label}</FieldLabel>}
             <View>
                 <InsetShadow containerStyle={styles.input} {...insetShadow}>
                     <TextInput
                         style={styles.inputText}
                         placeholderTextColor={colors.secondary50}
+                        onChangeText={handleChange(name)}
+                        onBlur={handleBlur(name)}
+                        value={values[name]}
                         {...props}
                     />
                     {icon && (
@@ -37,9 +43,12 @@ const TextField = ({ label, style, icon, ...props }) => {
     );
 };
 
-export default TextField;
+export default FormField;
 
 const styles = StyleSheet.create({
+    container: {
+        marginTop: 25,
+    },
     label: {
         marginBottom: 15,
     },

@@ -10,10 +10,12 @@ import {
     faMagnifyingGlassLocation,
     faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import TextField from "./forms/TextField";
+import FormField from "./forms/FormField";
 import LocationsList from "./LocationsList";
 import AppButton from "./AppButton";
 import { useDispatch, useSelector } from "react-redux";
+import Form from "./forms/Form";
+import SubmitButton from "./forms/SubmitButton";
 
 const LocationModal = ({ visible, onClose }) => {
     const { t } = useTranslation();
@@ -25,9 +27,12 @@ const LocationModal = ({ visible, onClose }) => {
     );
     const dispatch = useDispatch();
 
-    const isValidLocation = useCallback(() => {
-        return locationsList.some(({ label }) => label === selectedLocation);
-    }, [locationsList, selectedLocation]);
+    const isValidLocation = useCallback(
+        (location) => {
+            return locationsList.some(({ label }) => label === location);
+        },
+        [locationsList, selectedLocation]
+    );
 
     const handleLocationSet = useCallback((location) =>
         dispatch.location.set(location)
@@ -41,41 +46,53 @@ const LocationModal = ({ visible, onClose }) => {
             transparent
         >
             <View style={styles.modal}>
-                <FormLabel icon={faMapLocationDot}>
-                    {t("delivery_destination")}
-                </FormLabel>
-                <TextField
-                    style={styles.field}
-                    label={t("where_is_delivery")}
-                    icon={faMagnifyingGlassLocation}
-                    value={selectedLocation}
-                    onChangeText={handleLocationSet}
-                />
-                <LocationsList
-                    style={styles.list}
-                    data={locationsList}
-                    onSelect={handleLocationSet}
-                    selectLocation={selectedLocation}
-                />
-                <AppButton
-                    icon={faCheck}
-                    style={[
-                        styles.button,
-                        {
-                            backgroundColor: isValidLocation()
-                                ? colors.primary
-                                : colors.secondary50,
-                        },
-                    ]}
-                    onPress={() => {
+                <Form
+                    label={{
+                        icon: faMapLocationDot,
+                        content: t("delivery_destination"),
+                    }}
+                    initialValues={{ location: selectedLocation }}
+                    onSubmit={({ location }) => {
                         // Submit selection logic
-
+                        handleLocationSet(location);
                         // Close the modal
                         onClose();
                     }}
                 >
-                    {t("confirm")}
-                </AppButton>
+                    {({ values, setFieldValue }) => (
+                        <>
+                            <FormField
+                                style={styles.field}
+                                label={t("where_is_delivery")}
+                                name="location"
+                                icon={faMagnifyingGlassLocation}
+                            />
+                            <LocationsList
+                                style={styles.list}
+                                data={locationsList}
+                                onSelect={(value) =>
+                                    setFieldValue("location", value)
+                                }
+                                selectLocation={values.location}
+                            />
+                            <SubmitButton
+                                icon={faCheck}
+                                style={[
+                                    styles.button,
+                                    {
+                                        backgroundColor: isValidLocation(
+                                            values.location
+                                        )
+                                            ? colors.primary
+                                            : colors.secondary50,
+                                    },
+                                ]}
+                            >
+                                {t("confirm")}
+                            </SubmitButton>
+                        </>
+                    )}
+                </Form>
             </View>
         </Modal>
     );
@@ -93,7 +110,6 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     field: {
-        marginTop: 25,
         paddingHorizontal: layout.screenHorizontalPadding,
     },
     modal: {

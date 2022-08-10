@@ -18,6 +18,7 @@ import AppNavigator from "./app/navigators/AppNavigator";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider } from "react-redux";
 import store from "./app/configs/store";
+import LoginScreen from "./app/screens/LoginScreen";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -49,9 +50,10 @@ export default function App() {
                     onLayout={onLayoutRootView}
                 >
                     <Navigator
-                        initialRouteName="welcome"
+                        initialRouteName="login"
                         screenOptions={{ headerShown: false }}
                     >
+                        <Screen name="login" component={LoginScreen} />
                         <Screen name="welcome" component={WelcomeScreen} />
                         <Screen name="app" component={AppNavigator} />
                     </Navigator>

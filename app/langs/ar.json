@@ -1,5 +1,9 @@
 {
     "translation": {
+        "forget_your_password": "هل نسيت كلمة المرور؟",
+        "enter": "الدخول",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
         "confirm": "تأكيـد",
         "where_is_delivery": "ما هي منطقة التوصيل؟",
         "delivery_destination": "وجهة التوصيل",
