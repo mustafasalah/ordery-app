@@ -17,12 +17,15 @@ import {
 import SubmitButton from "../components/forms/SubmitButton";
 import AppButton from "../components/AppButton";
 import * as yup from "yup";
+import AppText from "../components/AppText";
+import SocialMediaLogin from "../components/SocialMediaLogin";
+import LoginFooter from "../components/LoginFooter";
 
 const LoginScreen = () => {
     const { t } = useTranslation();
 
     return (
-        <Screen noScrollView withoutTabBarMargin>
+        <Screen withoutTabBarMargin>
             <ImageBackground
                 source={require("../assets/bg.png")}
                 resizeMode="cover"
@@ -70,6 +73,8 @@ const LoginScreen = () => {
                             {t("enter")}
                         </SubmitButton>
                     </Form>
+                    <SocialMediaLogin />
+                    <LoginFooter />
                 </View>
             </ImageBackground>
         </Screen>

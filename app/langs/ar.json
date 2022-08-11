@@ -5,6 +5,13 @@
         "password is a required field": "الرجاء كتابة كلمة المرور",
         "email must be a valid email": "الرجاء إدخال بريد إلكتروني صالح",
         "email is a required field": "الرجاء كتابة البريد الإكتروني",
+
+        "signup_now": "سجّـل الآن",
+        "don't_have_an_account": "ليس لديك حساب؟",
+        "login_via_twitter": "الدخول بواسطة حساب تويتر",
+        "login_via_facebook": "الدخول بواسطة حساب فيسبوك",
+        "login_via_google": "الدخول بواسطة حساب جوجل",
+        "or_login_via": "أو ادخل بواسطة",
         "forget_your_password": "هل نسيت كلمة المرور؟",
         "enter": "الدخـول",
         "email": "البريد الإلكتروني",
