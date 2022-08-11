@@ -5,6 +5,8 @@ import FieldLabel from "./FieldLabel";
 import colors from "../../configs/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useFormikContext } from "formik";
+import { useTranslation } from "react-i18next";
+import ErrorMessage from "./ErrorMessage";
 
 const insetShadow = {
     shadowOffset: 0,
@@ -14,13 +16,24 @@ const insetShadow = {
 };
 
 const FormField = ({ label, style, icon, name, ...props }) => {
-    const { handleChange, handleBlur, values, touched } = useFormikContext();
+    const { handleChange, handleBlur, values, touched, errors } =
+        useFormikContext();
+    const { t } = useTranslation();
 
     return (
         <View style={[styles.container, style]}>
             {label && <FieldLabel style={styles.label}>{label}</FieldLabel>}
             <View>
-                <InsetShadow containerStyle={styles.input} {...insetShadow}>
+                <InsetShadow
+                    containerStyle={{
+                        ...styles.input,
+                        borderColor:
+                            errors[name] && touched[name]
+                                ? colors.red
+                                : "transparent",
+                    }}
+                    {...insetShadow}
+                >
                     <TextInput
                         style={styles.inputText}
                         placeholderTextColor={colors.secondary50}
@@ -33,11 +46,16 @@ const FormField = ({ label, style, icon, name, ...props }) => {
                         <FontAwesomeIcon
                             icon={icon}
                             size={14}
-                            color={colors.secondary50}
+                            color={
+                                errors[name] && touched[name]
+                                    ? colors.red50
+                                    : colors.secondary50
+                            }
                             style={styles.icon}
                         />
                     )}
                 </InsetShadow>
+                <ErrorMessage name={name} />
             </View>
         </View>
     );
@@ -62,6 +80,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         paddingVertical: 10,
         paddingHorizontal: 15,
+        borderWidth: 2,
     },
     inputText: {
         flex: 1,

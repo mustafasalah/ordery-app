@@ -9,7 +9,7 @@ const FormLabel = ({ children, icon }) => {
     return (
         <View style={styles.wrapper}>
             <View style={styles.container}>
-                <FontAwesomeIcon icon={icon} size={24} color={colors.primary} />
+                <FontAwesomeIcon icon={icon} size={22} color={colors.primary} />
                 <AppText style={styles.label}>{children}</AppText>
             </View>
         </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontFamily: "Almarai_700Bold",
-        fontSize: 18,
+        fontSize: 16,
         color: colors.white,
         marginTop: 5,
         marginBottom: 10,

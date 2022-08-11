@@ -5,7 +5,6 @@ import Logo from "../components/Logo";
 import layout from "../configs/layout";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
-import FormLabel from "../components/FormLabel";
 import { useTranslation } from "react-i18next";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import FormField from "../components/forms/FormField";
@@ -17,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SubmitButton from "../components/forms/SubmitButton";
 import AppButton from "../components/AppButton";
+import * as yup from "yup";
 
 const LoginScreen = () => {
     const { t } = useTranslation();
@@ -33,9 +33,10 @@ const LoginScreen = () => {
                     <Form
                         label={{ icon: faRightToBracket, content: t("login") }}
                         style={styles.loginForm}
-                        validate={({ email, password }) => {
-                            if (email === "") return { email: "Required" };
-                        }}
+                        validationSchema={yup.object({
+                            email: yup.string().email().required(),
+                            password: yup.string().min(6).max(20).required(),
+                        })}
                         initialValues={{ email: "", password: "" }}
                         onSubmit={(values) => {
                             console.log(values);
@@ -46,13 +47,13 @@ const LoginScreen = () => {
                             name="email"
                             placeholder="email@example.com"
                             icon={faAt}
+                            keyboardType="email-address"
                         />
 
                         <FormField
                             label={t("password")}
                             name="password"
                             type="password"
-                            placeholder="email@example.com"
                             icon={faUnlockKeyhole}
                             secureTextEntry
                         />

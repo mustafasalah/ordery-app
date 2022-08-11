@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import "intl-pluralrules";
 import { initReactI18next } from "react-i18next";
+import { setLocale } from "yup";
 import ar from "../langs/ar.json";
 import en from "../langs/en.json";
 

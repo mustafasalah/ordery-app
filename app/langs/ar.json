@@ -1,7 +1,12 @@
 {
     "translation": {
+        "password must be at most 20 characters": "كلمة المرور يجب الا تزيد عن 20 حرف",
+        "password must be at least 6 characters": "كلمة المرور يجب الا تقل عن 6 أحرف",
+        "password is a required field": "الرجاء كتابة كلمة المرور",
+        "email must be a valid email": "الرجاء إدخال بريد إلكتروني صالح",
+        "email is a required field": "الرجاء كتابة البريد الإكتروني",
         "forget_your_password": "هل نسيت كلمة المرور؟",
-        "enter": "الدخول",
+        "enter": "الدخـول",
         "email": "البريد الإلكتروني",
         "password": "كلمة المرور",
         "confirm": "تأكيـد",
