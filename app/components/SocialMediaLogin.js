@@ -7,7 +7,6 @@ import defaultStyle from "../configs/defaultStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
     faFacebook,
-    faFacebookF,
     faGoogle,
     faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
@@ -20,21 +19,23 @@ const SocialMediaLogin = () => {
         <View style={styles.container}>
             <View style={styles.seperator}></View>
             <AppText style={styles.text}>{t("or_login_via")}</AppText>
-            <SocialMediaButton
-                icon={faGoogle}
-                label={t("login_via_google")}
-                color="#DB4437"
-            />
-            <SocialMediaButton
-                icon={faFacebook}
-                label={t("login_via_facebook")}
-                color="#4267B2"
-            />
-            <SocialMediaButton
-                icon={faTwitter}
-                label={t("login_via_twitter")}
-                color="#1DA1F2"
-            />
+            <View style={styles.btnContainer}>
+                <SocialMediaButton
+                    icon={faGoogle}
+                    label={t("login_via_google")}
+                    color="#DB4437"
+                />
+                <SocialMediaButton
+                    icon={faFacebook}
+                    label={t("login_via_facebook")}
+                    color="#4267B2"
+                />
+                <SocialMediaButton
+                    icon={faTwitter}
+                    label={t("login_via_twitter")}
+                    color="#1DA1F2"
+                />
+            </View>
         </View>
     );
 };
@@ -57,5 +58,10 @@ const styles = StyleSheet.create({
         width: 120,
         alignSelf: "center",
         marginBottom: 30,
+    },
+    btnContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginBottom: 20,
     },
 });
