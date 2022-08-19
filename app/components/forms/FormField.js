@@ -7,15 +7,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import ErrorMessage from "./ErrorMessage";
+import SelectField from "./SelectField";
+import RadioOption from "./RadioOption";
+import defaultStyle from "../../configs/defaultStyle";
 
-const insetShadow = {
-    shadowOffset: 0,
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
-    elevation: 3,
-};
-
-const FormField = ({ label, style, icon, name, ...props }) => {
+const FormField = ({
+    label,
+    style,
+    icon,
+    name,
+    type = "text",
+    options,
+    ...props
+}) => {
     const { handleChange, handleBlur, values, touched, errors } =
         useFormikContext();
     const { t } = useTranslation();
@@ -24,37 +28,47 @@ const FormField = ({ label, style, icon, name, ...props }) => {
         <View style={[styles.container, style]}>
             {label && <FieldLabel style={styles.label}>{label}</FieldLabel>}
             <View>
-                <InsetShadow
-                    containerStyle={{
-                        ...styles.input,
-                        borderColor:
-                            errors[name] && touched[name]
-                                ? colors.red
-                                : "transparent",
-                    }}
-                    {...insetShadow}
-                >
-                    <TextInput
-                        style={styles.inputText}
-                        placeholderTextColor={colors.secondary50}
-                        onChangeText={handleChange(name)}
-                        onBlur={handleBlur(name)}
-                        value={values[name]}
-                        {...props}
-                    />
-                    {icon && (
-                        <FontAwesomeIcon
-                            icon={icon}
-                            size={14}
-                            color={
+                {type === "text" ? (
+                    <InsetShadow
+                        containerStyle={{
+                            ...styles.input,
+                            borderColor:
                                 errors[name] && touched[name]
-                                    ? colors.red50
-                                    : colors.secondary50
-                            }
-                            style={styles.icon}
+                                    ? colors.red
+                                    : "transparent",
+                        }}
+                        {...defaultStyle.insetShadow}
+                    >
+                        <TextInput
+                            style={styles.inputText}
+                            placeholderTextColor={colors.secondary50}
+                            onChangeText={handleChange(name)}
+                            onBlur={handleBlur(name)}
+                            value={values[name]}
+                            {...props}
                         />
-                    )}
-                </InsetShadow>
+                        {icon && (
+                            <FontAwesomeIcon
+                                icon={icon}
+                                size={14}
+                                color={
+                                    errors[name] && touched[name]
+                                        ? colors.red50
+                                        : colors.secondary50
+                                }
+                                style={styles.icon}
+                            />
+                        )}
+                    </InsetShadow>
+                ) : (
+                    <SelectField name={name}>
+                        {options.map(({ label, value }) => (
+                            <RadioOption key={value} value={value}>
+                                {t(label)}
+                            </RadioOption>
+                        ))}
+                    </SelectField>
+                )}
                 <ErrorMessage name={name} />
             </View>
         </View>

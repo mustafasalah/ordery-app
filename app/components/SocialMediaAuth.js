@@ -1,10 +1,8 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import colors from "../configs/colors";
 import AppText from "./AppText";
 import { useTranslation } from "react-i18next";
-import defaultStyle from "../configs/defaultStyle";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
     faFacebook,
     faGoogle,
@@ -12,13 +10,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import SocialMediaButton from "./SocialMediaButton";
 
-const SocialMediaLogin = () => {
+const SocialMediaAuth = ({ type = "login" }) => {
     const { t } = useTranslation();
 
     return (
         <View style={styles.container}>
             <View style={styles.seperator}></View>
-            <AppText style={styles.text}>{t("or_login_via")}</AppText>
+            <AppText style={styles.text}>{t(`or_${type}_via`)}</AppText>
             <View style={styles.btnContainer}>
                 <SocialMediaButton
                     icon={faGoogle}
@@ -40,7 +38,7 @@ const SocialMediaLogin = () => {
     );
 };
 
-export default SocialMediaLogin;
+export default SocialMediaAuth;
 
 const styles = StyleSheet.create({
     container: {

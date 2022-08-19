@@ -12,6 +12,13 @@ const defaultStyle = {
         writingDirection: I18nManager.isRTL ? "rtl" : "ltr",
     },
 
+    insetShadow: {
+        shadowOffset: 0,
+        shadowRadius: 5,
+        shadowOpacity: 0.2,
+        elevation: 3,
+    },
+
     textShadow: {
         textShadowColor: "rgba(0, 0, 0, 0.2)",
         textShadowOffset: { width: 0, height: 1 },

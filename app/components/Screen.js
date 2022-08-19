@@ -14,6 +14,7 @@ const Screen = ({
     children,
     noScrollView = false,
     withoutTabBarMargin = false,
+    noPaddingHorizontal = false,
 }) => {
     if (noScrollView === true)
         return (
@@ -21,6 +22,9 @@ const Screen = ({
                 style={[
                     styles.container,
                     {
+                        paddingHorizontal: noPaddingHorizontal
+                            ? 0
+                            : layout.screenHorizontalPadding,
                         marginBottom: withoutTabBarMargin
                             ? 0
                             : layout.tabBarMargin,
@@ -41,6 +45,9 @@ const Screen = ({
                         marginBottom: withoutTabBarMargin
                             ? 0
                             : layout.tabBarMargin,
+                        paddingHorizontal: noPaddingHorizontal
+                            ? 0
+                            : layout.screenHorizontalPadding,
                     },
                 ]}
             >
@@ -56,7 +63,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.gray,
-        paddingHorizontal: layout.screenHorizontalPadding,
         overflow: "visible",
     },
 });

@@ -16,7 +16,7 @@ export default SocialMediaButton;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.gray,
+        backgroundColor: colors.white,
         borderWidth: 2,
         justifyContent: "center",
         padding: 10,
