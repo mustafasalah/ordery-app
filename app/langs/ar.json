@@ -3,6 +3,8 @@
         "please enter numbers only": "الرجاء إدخال أرقام فقط",
         "phone number must start with 249 (Sudan Key)": "رقم الهاتف يجب أن يبدأ بالرقم 249 (مفتاح السودان)",
         "phone number must be exactly 12 numbers": "رقم الهاتف يجب أن يتكوّن من 12 رقم",
+        "fullname must be at least 2 characters": "يجب أن يتكون الاسم من حرفين على الأقل",
+        "fullname is a required field": "الرجاء كتابة الاسم",
         "phone_number is a required field": "الرجاء كتابة رقم هاتفك المحمول",
         "confirm_password is a required field": "الرجاء إعادة كتابة كلمة المرور",
         "password must be at most 20 characters": "كلمة المرور يجب الا تزيد عن 20 حرف",
