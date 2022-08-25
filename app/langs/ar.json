@@ -13,6 +13,7 @@
         "email must be a valid email": "الرجاء إدخال بريد إلكتروني صالح",
         "email is a required field": "الرجاء كتابة البريد الإكتروني",
 
+        "search_with_category_or_restaurants": "ابحث باسم الصنف  أو المطعم الذي تحبه",
         "male": "ذكر",
         "female": "انثى",
         "none": "غير محدد",

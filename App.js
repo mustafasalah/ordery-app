@@ -51,7 +51,7 @@ export default function App() {
                     onLayout={onLayoutRootView}
                 >
                     <Navigator
-                        initialRouteName="welcome"
+                        initialRouteName="app"
                         screenOptions={{ headerShown: false }}
                     >
                         <Screen name="signup" component={SignupScreen} />

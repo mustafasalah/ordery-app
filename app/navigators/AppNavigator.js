@@ -23,7 +23,7 @@ const AppNavigator = () => {
 
     return (
         <Navigator
-            initialRouteName="Home"
+            initialRouteName="discover"
             screenOptions={tabBarNavigationOptions}
         >
             <Screen
