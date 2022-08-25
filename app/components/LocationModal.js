@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Form from "./forms/Form";
 import SubmitButton from "./forms/SubmitButton";
 
-const LocationModal = ({ visible, onClose }) => {
+const LocationModal = ({ visible = true, onClose, style }) => {
     const { t } = useTranslation();
     const selectedLocation = useSelector((state) => state.location.selected);
     const locationsList = useSelector((state) =>
@@ -45,7 +45,7 @@ const LocationModal = ({ visible, onClose }) => {
             onRequestClose={onClose}
             transparent
         >
-            <View style={styles.modal}>
+            <View style={[styles.modal, style]}>
                 <Form
                     label={{
                         icon: faMapLocationDot,

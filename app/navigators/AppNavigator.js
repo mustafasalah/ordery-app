@@ -9,10 +9,18 @@ import DiscoverScreen from "../screens/DiscoverScreen";
 import FavouritesScreen from "../screens/FavouritesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import OrdersScreen from "../screens/OrdersScreen";
+import { useSelector } from "react-redux";
+import DeliveryLocationScreen from "../screens/DeliveryLocationScreen";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const AppNavigator = () => {
+    // Check if the delivery location is set first or not
+    const selectedLocation = useSelector((state) => state.location.selected);
+    if (selectedLocation === "") {
+        return <DeliveryLocationScreen />;
+    }
+
     return (
         <Navigator
             initialRouteName="Home"

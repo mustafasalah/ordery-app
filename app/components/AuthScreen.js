@@ -5,16 +5,24 @@ import layout from "../configs/layout";
 import Logo from "./Logo";
 import Screen from "./Screen";
 
-const AuthScreen = ({ children }) => {
+const AuthScreen = ({ children, noScrollView, withoutWrapper }) => {
     return (
-        <Screen withoutTabBarMargin noPaddingHorizontal>
+        <Screen
+            noScrollView={noScrollView}
+            withoutTabBarMargin
+            noPaddingHorizontal
+        >
             <ImageBackground
                 source={require("../assets/bg.png")}
                 resizeMode="cover"
                 style={styles.background}
             >
                 <Logo />
-                <View style={styles.container}>{children}</View>
+                {withoutWrapper ? (
+                    children
+                ) : (
+                    <View style={styles.container}>{children}</View>
+                )}
             </ImageBackground>
         </Screen>
     );

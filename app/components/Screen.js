@@ -6,7 +6,6 @@ import {
     ScrollView,
 } from "react-native";
 import React from "react";
-import defaultStyle from "../configs/defaultStyle";
 import colors from "../configs/colors";
 import layout from "../configs/layout";
 
