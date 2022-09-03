@@ -2,16 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import Label from "./Label";
 import CategoriesListItem from "./CategoriesListItem";
-import PizzaIcon from "../assets/categories/pizza.svg";
-import BurgerIcon from "../assets/categories/burger.svg";
-import BananaSplitIcon from "../assets/categories/banana-split.svg";
-import FriedChickenIcon from "../assets/categories/fried-chicken.svg";
-import ShawarmaIcon from "../assets/categories/shawarma.svg";
-import FishIcon from "../assets/categories/fish.svg";
-import SteakIcon from "../assets/categories/steak.svg";
-import SpaghettiIcon from "../assets/categories/spaghetti.svg";
-import BobaIcon from "../assets/categories/boba.svg";
-import FriesIcon from "../assets/categories/fries.svg";
+
 import { useTranslation } from "react-i18next";
 import colors from "../configs/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -21,94 +12,22 @@ import {
     faAngleDoubleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import defaultStyle from "../configs/defaultStyle";
-const iconSize = { width: 42, height: 42 };
+import { useSelector } from "react-redux";
+import categoriesConfig from "../configs/categories";
+
 const CategoriesList = ({ label }) => {
     const { t } = useTranslation();
     const [collapsed, setCollapsed] = useState(false);
-    const [categories, setCategories] = useState([
-        {
-            name: "pizza",
-            icon: <PizzaIcon {...iconSize} />,
-            color: "#F6BE68",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "burger",
-            icon: <BurgerIcon {...iconSize} />,
-            color: "#A67F76",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "dessert",
-            icon: <BananaSplitIcon {...iconSize} />,
-            color: "#B6DDEE",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "chicken",
-            icon: <FriedChickenIcon {...iconSize} />,
-            color: "#E64042",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "steak",
-            icon: <SteakIcon {...iconSize} />,
-            color: "#DADEE5",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "fish",
-            icon: <FishIcon {...iconSize} />,
-            color: "#A5B9C0",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "shawarma",
-            icon: <ShawarmaIcon {...iconSize} />,
-            color: "#A14939",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "asian",
-            icon: <SpaghettiIcon {...iconSize} />,
-            color: "#DFA361",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "drinks",
-            icon: <BobaIcon {...iconSize} />,
-            color: "#E2BEA1",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-        {
-            name: "fries",
-            icon: <FriesIcon {...iconSize} />,
-            color: "#EBA75B",
-            onPress() {
-                console.log("category clicked!");
-            },
-        },
-    ]);
+    const categories = useSelector((state) => state.categories);
+    const [categoriesData] = useState(() => {
+        return categories.map((category) => {
+            return { ...category, ...categoriesConfig[category.name] };
+        });
+    });
 
-    const shownCategories = collapsed ? categories : categories.slice(0, 5);
+    const shownCategories = collapsed
+        ? categoriesData
+        : categoriesData.slice(0, 5);
 
     return (
         <View style={styles.wrapper}>

@@ -19,7 +19,6 @@ const SearchBox = () => {
             style={styles.box}
         >
             {({ setFieldValue, handleBlur, values, touched, errors }) => {
-                console.log(values["search"]);
                 return (
                     <>
                         <TextInput
@@ -59,6 +58,8 @@ const styles = StyleSheet.create({
         textAlign: I18nManager.isRTL ? "right" : "left",
     },
     box: {
+        flex: 0,
+        marginVertical: 25,
         alignItems: "center",
         flexDirection: "row",
         backgroundColor: colors.white,

@@ -1,14 +1,19 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useCallback } from "react";
 import AppText from "./AppText";
 import defaultStyle from "../configs/defaultStyle";
 import { useTranslation } from "react-i18next";
 
-const CategoriesListItem = ({ name, icon, color, onPress }) => {
+const CategoriesListItem = ({ name, icon, color }) => {
     const { t } = useTranslation();
 
+    const handlePress = useCallback(() => {
+        // logic to navigation to category screen here
+        console.log(name + " Clicked!");
+    }, [name]);
+
     return (
-        <Pressable style={styles.container} onPress={onPress}>
+        <Pressable style={styles.container} onPress={handlePress}>
             <View style={[styles.iconContainer, { backgroundColor: color }]}>
                 {icon}
             </View>
