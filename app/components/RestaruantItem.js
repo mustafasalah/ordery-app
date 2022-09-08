@@ -1,5 +1,5 @@
-import { I18nManager, StyleSheet, View, Image } from "react-native";
-import React from "react";
+import { I18nManager, StyleSheet, View, Image, ScrollView } from "react-native";
+import React, { useCallback } from "react";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
 import Rating from "./Rating";
@@ -8,8 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faLocationDot, faStopwatch } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import Category from "./Category";
+import FavouriteButton from "./FavouriteButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const RestaurantItem = ({
+    id,
     name,
     logo,
     rate,
@@ -19,6 +22,16 @@ const RestaurantItem = ({
     categories,
 }) => {
     const { t } = useTranslation();
+
+    const active = useSelector((state) =>
+        state.favourites.some((favouriteId) => favouriteId === id)
+    );
+    const dispatch = useDispatch();
+    const handleFavouriteBtnPress = useCallback(() => {
+        // Logic for make item in user's favourite list
+        dispatch.favourites.toggle(id);
+        console.log("Resturant " + name.en + " added to favourite list");
+    });
 
     return (
         <View style={styles.container}>
@@ -63,6 +76,11 @@ const RestaurantItem = ({
                     ))}
                 </View>
             </View>
+            <FavouriteButton
+                style={styles.favBtn}
+                active={active}
+                onPress={handleFavouriteBtnPress}
+            />
         </View>
     );
 };
@@ -70,6 +88,11 @@ const RestaurantItem = ({
 export default RestaurantItem;
 
 const styles = StyleSheet.create({
+    favBtn: {
+        position: "absolute",
+        top: 12,
+        end: 12,
+    },
     categoriesSection: {
         marginTop: 10,
         flexDirection: "row",
