@@ -5,9 +5,9 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import colors from "../configs/colors";
 
-const FavouriteButton = ({ active = false, ...props }) => {
+const FavouriteButton = ({ active = false, style, ...props }) => {
     return (
-        <Pressable {...props}>
+        <Pressable style={[styles.btn, style]} {...props}>
             <FontAwesomeIcon
                 size={18}
                 color={colors.red}
@@ -19,4 +19,8 @@ const FavouriteButton = ({ active = false, ...props }) => {
 
 export default FavouriteButton;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    btn: {
+        padding: 12,
+    },
+});

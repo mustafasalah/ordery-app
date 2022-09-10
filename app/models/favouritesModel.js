@@ -5,7 +5,7 @@ const favouritesModel = {
         toggle(state, id) {
             if (!state.includes(id)) return [...state, id];
             state.splice(state.indexOf(id), 1);
-            return state;
+            return [...state];
         },
     },
     effects: {},

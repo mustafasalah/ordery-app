@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import Category from "./Category";
 import FavouriteButton from "./FavouriteButton";
 import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
 
 const RestaurantItem = ({
     id,
@@ -23,9 +24,10 @@ const RestaurantItem = ({
 }) => {
     const { t } = useTranslation();
 
-    const active = useSelector((state) =>
-        state.favourites.some((favouriteId) => favouriteId === id)
+    const active = useSelector(({ favourites }) =>
+        favourites.some((favouriteId) => favouriteId === id)
     );
+
     const dispatch = useDispatch();
     const handleFavouriteBtnPress = useCallback(() => {
         // Logic for make item in user's favourite list
@@ -90,8 +92,8 @@ export default RestaurantItem;
 const styles = StyleSheet.create({
     favBtn: {
         position: "absolute",
-        top: 12,
-        end: 12,
+        top: 0,
+        end: 0,
     },
     categoriesSection: {
         marginTop: 10,
