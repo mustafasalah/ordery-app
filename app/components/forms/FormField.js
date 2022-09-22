@@ -7,12 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import ErrorMessage from "./ErrorMessage";
-import SelectField from "./SelectField";
+import Select from "./Select";
 import RadioOption from "./RadioOption";
 import defaultStyle from "../../configs/defaultStyle";
 
 const FormField = ({
     label,
+    labelStretch,
     style,
     icon,
     name,
@@ -26,7 +27,11 @@ const FormField = ({
 
     return (
         <View style={[styles.container, style]}>
-            {label && <FieldLabel style={styles.label}>{label}</FieldLabel>}
+            {label && (
+                <FieldLabel style={styles.label} stretch={labelStretch}>
+                    {label}
+                </FieldLabel>
+            )}
             <View>
                 {type === "text" ? (
                     <InsetShadow
@@ -61,13 +66,17 @@ const FormField = ({
                         )}
                     </InsetShadow>
                 ) : (
-                    <SelectField name={name}>
+                    <Select name={name}>
                         {options.map(({ label, value }) => (
-                            <RadioOption key={value} value={value}>
+                            <RadioOption
+                                key={value}
+                                value={value}
+                                buttonStyle={type === "radio-btn"}
+                            >
                                 {t(label)}
                             </RadioOption>
                         ))}
-                    </SelectField>
+                    </Select>
                 )}
                 <ErrorMessage name={name} />
             </View>

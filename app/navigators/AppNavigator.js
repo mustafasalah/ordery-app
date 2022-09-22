@@ -11,6 +11,8 @@ import HomeScreen from "../screens/HomeScreen";
 import OrdersScreen from "../screens/OrdersScreen";
 import { useSelector } from "react-redux";
 import DeliveryLocationScreen from "../screens/DeliveryLocationScreen";
+import ScreenHeader from "../components/ScreenHeader";
+import FilterButton from "../components/FilterButton";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -32,7 +34,18 @@ const AppNavigator = () => {
                 options={{ header: HomeHeader }}
             />
             <Screen name="basket" component={BasketScreen} />
-            <Screen name="discover" component={DiscoverScreen} />
+            <Screen
+                name="discover"
+                component={DiscoverScreen}
+                options={{
+                    header: (props) => (
+                        <ScreenHeader
+                            endBtn={<FilterButton type="search" />}
+                            {...props}
+                        />
+                    ),
+                }}
+            />
             <Screen name="orders" component={OrdersScreen} />
             <Screen name="favourites" component={FavouritesScreen} />
         </Navigator>

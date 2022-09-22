@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import OptionContext from "../../context/OptionContext";
 
-const SelectField = ({ name, children }) => {
+const Select = ({ name, children }) => {
     return (
         <OptionContext.Provider value={name}>
             <View style={{ flexDirection: "row" }}>{children}</View>
@@ -10,4 +10,4 @@ const SelectField = ({ name, children }) => {
     );
 };
 
-export default SelectField;
+export default Select;

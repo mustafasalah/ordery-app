@@ -9,15 +9,8 @@ import SpaghettiIcon from "../assets/categories/spaghetti.svg";
 import DrinksIcon from "../assets/categories/boba.svg";
 import FriesIcon from "../assets/categories/fries.svg";
 
-import MiniPizzaIcon from "../assets/categories/mini/pizza.svg";
-import MiniBurgerIcon from "../assets/categories/mini/burger.svg";
-import MiniDessertIcon from "../assets/categories/mini/dessert.svg";
-import MiniChickenIcon from "../assets/categories/mini/chicken.svg";
 import MiniShawarmaIcon from "../assets/categories/mini/shawarma.svg";
-import MiniFishIcon from "../assets/categories/mini/fish.svg";
 import MiniSteakIcon from "../assets/categories/mini/steak.svg";
-import MiniAsianIcon from "../assets/categories/mini/asian.svg";
-import MiniDrinksIcon from "../assets/categories/mini/drinks.svg";
 import MiniFriesIcon from "../assets/categories/mini/fries.svg";
 import {
     faBowlRice,
@@ -26,6 +19,7 @@ import {
     faFishFins,
     faIceCream,
     faPizzaSlice,
+    faMartiniGlassCitrus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import colors from "./colors";
@@ -108,7 +102,13 @@ const categoriesConfig = {
     },
     drinks: {
         icon: <DrinksIcon {...iconSize} />,
-        miniIcon: <MiniDrinksIcon {...miniIconSize} />,
+        miniIcon: (
+            <FontAwesomeIcon
+                icon={faMartiniGlassCitrus}
+                size={10}
+                color={colors.primary}
+            />
+        ),
         color: "#E2BEA1",
     },
     fries: {

@@ -45,7 +45,6 @@ const LoginScreen = () => {
                 <FormField
                     label={t("password")}
                     name="password"
-                    type="password"
                     icon={faUnlockKeyhole}
                     secureTextEntry
                 />

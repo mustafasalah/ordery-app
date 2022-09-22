@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     box: {
         flex: 0,
-        marginVertical: 25,
+        marginTop: 25,
         alignItems: "center",
         flexDirection: "row",
         backgroundColor: colors.white,

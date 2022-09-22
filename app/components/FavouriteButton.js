@@ -10,7 +10,7 @@ const FavouriteButton = ({ active = false, style, ...props }) => {
         <Pressable style={[styles.btn, style]} {...props}>
             <FontAwesomeIcon
                 size={18}
-                color={colors.red}
+                color={active ? colors.red : colors.secondary50}
                 icon={active ? faHeartSolid : faHeart}
             />
         </Pressable>

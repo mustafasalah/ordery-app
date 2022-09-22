@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import AppButton from "../AppButton";
 import { useFormikContext } from "formik";
 import { StyleSheet } from "react-native";
-import colors from "../../configs/colors";
 import AnimatedLottieView from "lottie-react-native";
 
 const SubmitButton = ({ children, style, icon, ...props }) => {

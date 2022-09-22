@@ -5,10 +5,12 @@ import restaurantsModel from "../models/restaurantsModel";
 import trendingMealsModel from "../models/trendingMealsModel";
 import categoriesModel from "../models/categoriesModel";
 import favouritesModel from "../models/favouritesModel";
+import filtersModel from "../models/filtersModel";
 
 const store = init({
     name: "Ordery App",
     models: {
+        filters: filtersModel,
         favourites: favouritesModel,
         categories: categoriesModel,
         offers: offersModel,

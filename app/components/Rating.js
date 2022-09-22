@@ -1,4 +1,4 @@
-import { I18nManager, StyleSheet, Text, View } from "react-native";
+import { I18nManager, StyleSheet, View } from "react-native";
 import React, { useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 import colors from "../configs/colors";
-import AppText from "./AppText";
 
 const Rating = ({ rate }) => {
     const printRating = useCallback(() => {
@@ -24,9 +23,9 @@ const Rating = ({ rate }) => {
             );
         }
         if (Math.round(rate) !== rate)
-            stars[i++] = (
+            stars[i] = (
                 <FontAwesomeIcon
-                    key={i}
+                    key={i++}
                     size={12}
                     icon={faStarHalfStroke}
                     color={colors.yellow}
@@ -51,7 +50,7 @@ const Rating = ({ rate }) => {
         return stars;
     }, [rate]);
 
-    return <AppText>{printRating()}</AppText>;
+    return <View style={{ flexDirection: "row" }}>{printRating()}</View>;
 };
 
 export default Rating;

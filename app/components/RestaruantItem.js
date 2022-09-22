@@ -1,4 +1,11 @@
-import { I18nManager, StyleSheet, View, Image, ScrollView } from "react-native";
+import {
+    I18nManager,
+    StyleSheet,
+    View,
+    Image,
+    useWindowDimensions,
+} from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import React, { useCallback } from "react";
 import colors from "../configs/colors";
 import defaultStyle from "../configs/defaultStyle";
@@ -10,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import Category from "./Category";
 import FavouriteButton from "./FavouriteButton";
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo } from "react";
+import layout from "../configs/layout";
 
 const RestaurantItem = ({
     id,
@@ -23,6 +30,7 @@ const RestaurantItem = ({
     categories,
 }) => {
     const { t } = useTranslation();
+    const { width: windowWidth } = useWindowDimensions();
 
     const active = useSelector(({ favourites }) =>
         favourites.some((favouriteId) => favouriteId === id)
@@ -72,11 +80,19 @@ const RestaurantItem = ({
                     </View>
                 </View>
 
-                <View style={styles.categoriesSection}>
+                <ScrollView
+                    contentContainerStyle={{
+                        marginTop: 10,
+                        width:
+                            windowWidth - layout.screenHorizontalPadding - 130,
+                    }}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal
+                >
                     {categories.map((id) => (
                         <Category id={id} key={id} />
                     ))}
-                </View>
+                </ScrollView>
             </View>
             <FavouriteButton
                 style={styles.favBtn}
@@ -94,10 +110,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 0,
         end: 0,
-    },
-    categoriesSection: {
-        marginTop: 10,
-        flexDirection: "row",
     },
     duration: {
         flexDirection: "row",
@@ -141,16 +153,21 @@ const styles = StyleSheet.create({
     endSection: {
         paddingHorizontal: 15,
         paddingVertical: 10,
+        alignItems: "flex-start",
     },
     logo: {
         width: 70,
         height: 70,
         marginBottom: 10,
+        borderRadius: 10,
     },
     container: {
         flexDirection: "row",
         backgroundColor: colors.white,
         borderRadius: 10,
-        ...defaultStyle.shadow,
+        marginBottom: 20,
+        marginHorizontal: layout.screenHorizontalPadding,
+        overflow: "hidden",
+        ...defaultStyle.lightShadow,
     },
 });
